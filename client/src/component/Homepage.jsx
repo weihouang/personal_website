@@ -34,26 +34,25 @@ const Home = () => {
       minH="100vh"
       pt={"10em"}
       fontFamily="'poppins', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif"
-      pl={"10em"}
-      pr={"10em"}
+      pl={"13em"}
+      pr={"13em"}
     >
       <Flex>
-        <VStack spacing={6} alignItems="flex-start" w={"70%"} pl={"2em"}>
+        <VStack spacing={3} alignItems="flex-start" w={"60%"} pl={"2em"}>
           <Heading as="h1" size="2xl">
             <Title />
           </Heading>
-          <Text fontSize="xl" fontWeight="medium">
-            A Software Engineer with a Passion for Developing Cutting-Edge
-            Applications
+          <Text fontSize="xl" fontWeight="medium" textAlign="left">
+            a Software Engineer with a Passion for Innovation.
           </Text>
-          <Stack spacing={4} textAlign="left" maxW="600px">
+          <Stack spacing={3} textAlign="left" maxW="600px">
             <Text fontSize="lg">
-              An enthusiastic and creative software engineer with a strong focus
-              on user-centric design and efficient, scalable code.
-            </Text>
-            <Text fontSize="lg">
-              With a passion for both backend and frontend technologies, turning
-              complex problems into elegant digital solutions.
+              I am an enthusiastic and creative software engineer dedicated to
+              crafting cutting-edge applications. Focusing on user-centric
+              design and scalable code, I transform complex problems into
+              elegant digital solutions. Proficient in both backend and frontend
+              technologies, I deliver seamless and robust applications with high
+              quality and performance.
             </Text>
           </Stack>
           <Button
@@ -64,7 +63,7 @@ const Home = () => {
             Learn More
           </Button>
         </VStack>
-        <Flex w={"30%"} justifyContent="center" alignItems="center">
+        <Flex w={"40%"} justifyContent="center" alignItems="center">
           <Image
             src={homepageImage}
             alt="homepage image"

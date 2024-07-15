@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box, Text, keyframes, useColorMode } from "@chakra-ui/react";
+import "typeface-roboto";
 
 const blink = keyframes`
   0%, 100% {
@@ -17,7 +18,7 @@ const BlinkingCursor = ({ blink, color }) => (
 );
 
 const TextSpan = ({ children, color }) => (
-  <Text as="span" color={color}>
+  <Text as="span" color={color} fontFamily={"'Roboto', 'sans-serif'"}>
     {children}
   </Text>
 );
@@ -25,7 +26,7 @@ const TextSpan = ({ children, color }) => (
 const Title = () => {
   const { colorMode } = useColorMode();
   const cursorColor = colorMode === "light" ? "black" : "white";
-  const textColor = colorMode === "light" ? "blue.600" : "blue.300";
+  const textColor = colorMode === "light" ? "black.600" : "white.300";
 
   const words = ["Hi, I am Weiho"];
   const [index, setIndex] = useState(0); // Current index for the words array
