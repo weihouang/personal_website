@@ -1,5 +1,13 @@
 import React, { useCallback, useState } from "react";
-import { Box, Button, VStack, Text, HStack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  VStack,
+  Text,
+  HStack,
+  NumberInput,
+  NumberInputField,
+} from "@chakra-ui/react";
 import { useDropzone } from "react-dropzone";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
@@ -7,6 +15,7 @@ import { saveAs } from "file-saver";
 const FileDropper = () => {
   const [file1, setFile1] = useState(null);
   const [file2, setFile2] = useState(null);
+  const [headerLines, setHeaderLines] = useState(0);
 
   const onDrop1 = useCallback((acceptedFiles) => {
     setFile1(acceptedFiles[0]);
@@ -46,21 +55,24 @@ const FileDropper = () => {
       const df1 = await readExcel(file1);
       const df2 = await readExcel(file2);
 
+      const df1Data = df1.slice(headerLines);
+      const df2Header = df2.slice(0, headerLines);
+      const df2Data = df2.slice(headerLines);
+
       const commonValues = new Set();
 
-      for (let row of df1) {
+      for (let row of df1Data) {
         if (row.length > 0) {
           commonValues.add(row[0]);
         }
       }
-      console.log(commonValues);
 
-      const df2Filtered = df2.filter((row) => !commonValues.has(row[0]));
+      const df2Filtered = df2Data.filter((row) => !commonValues.has(row[0]));
 
-      console.log(df2Filtered);
+      const mergedData = [...df2Header, ...df2Filtered];
 
       const newWorkbook = XLSX.utils.book_new();
-      const newWorksheet = XLSX.utils.json_to_sheet(df2Filtered);
+      const newWorksheet = XLSX.utils.aoa_to_sheet(mergedData);
       XLSX.utils.book_append_sheet(newWorkbook, newWorksheet, "Filtered Data");
 
       const wbout = XLSX.write(newWorkbook, {
@@ -115,6 +127,16 @@ const FileDropper = () => {
             </Text>
           )}
         </Box>
+      </HStack>
+      <HStack spacing={6} w="100%" maxW="600px" justifyContent="center">
+        <Text>Number of header lines to skip:</Text>
+        <NumberInput
+          value={headerLines}
+          onChange={(valueString) => setHeaderLines(parseInt(valueString) || 0)}
+          min={0}
+        >
+          <NumberInputField />
+        </NumberInput>
       </HStack>
       <Button colorScheme="teal" onClick={handleMergeAndDownload}>
         Remove Duplicate and Download
