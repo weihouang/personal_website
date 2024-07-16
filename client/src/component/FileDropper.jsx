@@ -69,7 +69,7 @@ const FileDropper = () => {
 
       const df2Filtered = df2Data.filter((row) => !commonValues.has(row[0]));
 
-      const mergedData = [...df2Header, ...df2Filtered];
+      const mergedData = [...df2Filtered];
 
       const newWorkbook = XLSX.utils.book_new();
       const newWorksheet = XLSX.utils.aoa_to_sheet(mergedData);

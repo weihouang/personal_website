@@ -16,6 +16,8 @@ import ProjectGallery from "./ProjectGallery";
 import Hackathon from "./Hackathon";
 import "typeface-poppins";
 import homepageImage from "../../public/homepageImage.jpeg";
+import homepageImage1 from "../../public/homepageImage1.png";
+import homepageImage2 from "../../public/homepageImage2.png";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
@@ -65,7 +67,7 @@ const Home = () => {
         </VStack>
         <Flex w={"40%"} justifyContent="center" alignItems="center">
           <Image
-            src={homepageImage}
+            src={homepageImage2}
             alt="homepage image"
             userSelect="none"
             draggable="false"
